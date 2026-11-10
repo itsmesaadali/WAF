@@ -1,0 +1,8 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "protected-site", "runtimeExecutable": "node", "runtimeArgs": ["protected-site/src/server.js"], "port": 3000 },
+    { "name": "waf", "runtimeExecutable": "waf-backend/.venv/Scripts/python.exe", "runtimeArgs": ["-m", "uvicorn", "--app-dir", "waf-backend", "app.main:app", "--host", "127.0.0.1", "--port", "8000", "--no-proxy-headers", "--no-server-header"], "port": 8000, "autoPort": false },
+    { "name": "dashboard", "runtimeExecutable": "pnpm", "runtimeArgs": ["--dir", "dashboard", "dev", "--port", "3001"], "port": 3001 }
+  ]
+}
