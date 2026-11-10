@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WAF Link Guard</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="icons/icon32.png" alt="" width="24" height="24">
+    <div>
+      <h1>WAF Link Guard</h1>
+      <p class="muted">Hybrid WAF rules, running on your device</p>
+    </div>
+  </header>
+
+  <nav role="tablist">
+    <button role="tab" data-view="page" aria-selected="true">This page</button>
+    <button role="tab" data-view="check" aria-selected="false">Check text</button>
+    <button role="tab" data-view="settings" aria-selected="false">Settings</button>
+  </nav>
+
+  <main>
+    <section data-panel="page">
+      <div id="verdict" class="verdict"></div>
+      <div id="links" class="card"></div>
+      <div id="grade" class="card"></div>
+    </section>
+
+    <section data-panel="check" hidden>
+      <label for="text">Paste a link, message or form value</label>
+      <textarea id="text" rows="5" spellcheck="false" placeholder="https://shop.example/search?q=%3Cscript%3E…"></textarea>
+      <div id="check-result"></div>
+    </section>
+
+    <section data-panel="settings" hidden>
+      <label class="toggle"><input type="checkbox" id="highlightLinks"> Outline dangerous links on pages</label>
+      <label class="toggle"><input type="checkbox" id="warnOnClick"> Ask before opening a dangerous link</label>
+      <label class="toggle"><input type="checkbox" id="pageBanner"> Warn when a page's own address carries an attack</label>
+      <p class="muted">Rules: <span id="rule-count"></span> SQL injection and XSS signatures copied from the Hybrid WAF.</p>
+      <p class="muted">Privacy: addresses and text are checked inside this browser. Nothing is sent to any server.</p>
+    </section>
+  </main>
+
+  <script src="rules.js"></script>
+  <script src="engine.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

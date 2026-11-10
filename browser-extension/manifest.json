@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "WAF Link Guard",
+  "version": "1.0.0",
+  "description": "Warns you about links and pages hiding SQL injection or XSS attacks, and grades a site's security headers, entirely on your device.",
+  "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "action": {
+    "default_title": "WAF Link Guard",
+    "default_popup": "popup.html",
+    "default_icon": { "16": "icons/icon16.png", "32": "icons/icon32.png" }
+  },
+  "background": { "service_worker": "background.js" },
+  "permissions": ["storage", "contextMenus", "webRequest", "tabs"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["rules.js", "engine.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

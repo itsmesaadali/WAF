@@ -1,0 +1,9 @@
+{
+  "name": "waf-link-guard",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Chrome extension that uses the Hybrid WAF's rules to warn about dangerous links",
+  "scripts": {
+    "test": "node --test test/engine.test.js test/grade.test.js"
+  }
+}
