@@ -1,0 +1,31 @@
+<!doctype html>
+<!-- Opens the popup outside Chrome with pretend extension data, for checking its layout.
+     Serve the browser-extension folder (py -m http.server) and open /test/popup-harness.html -->
+<html lang="en">
+<head><meta charset="utf-8"><title>Popup harness</title></head>
+<body style="margin:0;background:#888">
+<iframe id="popup" title="Popup" style="border:0;width:380px;height:860px;display:block"></iframe>
+<script>
+  const frame = document.getElementById("popup")
+  frame.addEventListener("load", () => {}, { once: true })
+  fetch("../popup.html").then((r) => r.text()).then((html) => {
+    const stub = `<script src="../grade.js"><\/script><script>
+      window.chrome = {
+        tabs: { query: async () => [{ id: 1, url: "https://shop.example/search?q=%27%20OR%20%271%27%3D%271%27%20--" }] },
+        runtime: { sendMessage: async () => ({
+          links: { total: 42, flagged: [{ href: "https://shop.example/p?q=%3Cscript%3Ealert(1)%3C/script%3E", text: "Free gift card", rule: "XSS-001" }] },
+          headers: WafGrade.grade("https://shop.example/", {
+            "strict-transport-security": "max-age=31536000",
+            "content-security-policy": "script-src 'self' 'unsafe-inline'",
+            "x-content-type-options": "nosniff",
+            server: "nginx/1.18.0",
+          }),
+        }) },
+        storage: { local: { get: async () => ({ settings: {} }), set: async () => {} },
+                   session: { get: async () => ({}), remove: async () => {} } },
+      }<\/script>`
+    frame.srcdoc = html.replace("<head>", `<head><base href="../">${stub}`)
+  })
+</script>
+</body>
+</html>
