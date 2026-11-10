@@ -1,0 +1,176 @@
+{
+  "ran_at": "2026-11-05T14:05:03.653960+00:00",
+  "waf": "http://127.0.0.1:8000",
+  "upstream": "http://127.0.0.1:3000",
+  "environment": "local",
+  "results": [
+    {
+      "group": "Normal",
+      "name": "Home page",
+      "passed": true,
+      "detail": "status 200"
+    },
+    {
+      "group": "Normal",
+      "name": "Search",
+      "passed": true,
+      "detail": "status 200"
+    },
+    {
+      "group": "Normal",
+      "name": "Search with an apostrophe",
+      "passed": true,
+      "detail": "status 200"
+    },
+    {
+      "group": "Normal",
+      "name": "Sentence with SQL words",
+      "passed": true,
+      "detail": "status 200"
+    },
+    {
+      "group": "Normal",
+      "name": "Form post",
+      "passed": true,
+      "detail": "status 200"
+    },
+    {
+      "group": "Normal",
+      "name": "JSON API",
+      "passed": true,
+      "detail": "status 201"
+    },
+    {
+      "group": "Normal",
+      "name": "Static-style path",
+      "passed": true,
+      "detail": "status 200"
+    },
+    {
+      "group": "Attack",
+      "name": "SQLi tautology",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "SQLi UNION",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "SQLi stacked DROP",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "SQLi time-based",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "SQLi in form body",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "SQLi in JSON",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "SQLi in User-Agent",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "XSS script tag",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "XSS image event",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "XSS SVG",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "XSS script URL",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "Evasion double encoding",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "Evasion comments",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "Evasion mixed case",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "Evasion HTML entities",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "Evasion base64",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Attack",
+      "name": "Evasion compressed body",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Bypass",
+      "name": "A forged secret header doesn't break the site",
+      "passed": true,
+      "detail": "status 200"
+    },
+    {
+      "group": "Bypass",
+      "name": "Direct access to the website is refused",
+      "passed": true,
+      "detail": "status 403"
+    },
+    {
+      "group": "Logging",
+      "name": "Blocked attacks saved as incidents",
+      "passed": true,
+      "detail": "14 found in the database"
+    },
+    {
+      "group": "Rate limit",
+      "name": "Requests over a temporary limit of 10/min",
+      "passed": true,
+      "detail": "18 returned 429"
+    }
+  ]
+}
