@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Link Guard demo - SecureShop</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .demo { max-width: 760px; margin: 0 auto; padding: 24px 16px; font-family: system-ui, sans-serif; line-height: 1.5; }
+    .demo li { margin: 8px 0; }
+    .demo code { font-size: 12px; word-break: break-all; }
+  </style>
+</head>
+<body>
+  <main class="demo">
+    <h1>WAF Link Guard demo</h1>
+    <p>A pretend inbox with links people might send you. With the extension installed, dangerous links get a red dashed outline, and clicking one shows a warning first. If you click <b>Open anyway</b>, the Hybrid WAF blocks the request too: two layers of defence.</p>
+
+    <h2>Safe links</h2>
+    <ul>
+      <li><a href="/products?q=book">Search for books</a></li>
+      <li><a href="/products/2">Product 2</a></li>
+      <li><a href="/products?q=O%27Brien+mug">A search with an apostrophe (O'Brien mug)</a></li>
+      <li><a href="/contact">Contact page</a></li>
+    </ul>
+
+    <h2>Booby-trapped links</h2>
+    <ul>
+      <li><a href="/products?q=%3Cscript%3Ealert(document.cookie)%3C%2Fscript%3E">"Check out this discount!"</a> <code>steals cookies with a script tag</code></li>
+      <li><a href="/products?q=1%20UNION%20SELECT%20username,password%20FROM%20users--">"Your order status"</a> <code>SQL injection that dumps passwords</code></li>
+      <li><a href="/products?q=%253Cimg%2520src%253Dx%2520onerror%253Dalert(1)%253E">"Free gift card"</a> <code>double-encoded XSS</code></li>
+      <li><a href="/products#%3Cimg%20src=x%20onerror=alert(1)%3E">"See the photo"</a> <code>attack in the #fragment, which never reaches the server or the WAF</code></li>
+      <li><a href="/products?q=JyBPUiAnMSc9JzE=">"Track your parcel"</a> <code>base64-hidden SQL injection</code></li>
+    </ul>
+
+    <h2>A page whose own address is an attack</h2>
+    <p><a href="/link-guard-demo.html?ref=%22%3E%3Csvg%20onload%3Dalert(1)%3E">Open this demo page with an attack in its address</a>. The extension shows a red warning banner at the top. (The WAF blocks it too, so open it with <b>Open anyway</b> and then look at the result.)</p>
+  </main>
+</body>
+</html>

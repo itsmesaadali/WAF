@@ -1,0 +1,17 @@
+{
+  "name": "protected-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Authorized test website that only accepts traffic from the Hybrid WAF.",
+  "type": "module",
+  "main": "src/server.js",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/app.test.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
+  }
+}
