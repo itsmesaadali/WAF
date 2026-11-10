@@ -1,0 +1,143 @@
+// Prisma is the single source of truth for the database design.
+// The Python WAF connects with SQLAlchemy; tests/integration/test_schema_match.py
+// fails if waf-backend/app/models.py stops matching the migrated tables.
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AdminUser {
+  id             Int       @id @default(autoincrement())
+  username       String    @unique @db.VarChar(64)
+  passwordHash   String    @map("password_hash")
+  failedAttempts Int       @default(0) @map("failed_attempts")
+  lockedUntil    DateTime? @map("locked_until") @db.Timestamptz(6)
+  lastLoginAt    DateTime? @map("last_login_at") @db.Timestamptz(6)
+  // Raised on logout or password change so older login tokens stop working.
+  tokenVersion   Int       @default(0) @map("token_version")
+  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@map("admin_users")
+}
+
+model RequestLog {
+  id           BigInt   @id @default(autoincrement())
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  clientIp     String   @map("client_ip") @db.VarChar(64)
+  method       String   @db.VarChar(16)
+  path         String
+  // Query string with sensitive values already removed.
+  query        String?
+  userAgent    String?  @map("user_agent")
+  statusCode   Int      @map("status_code")
+  // allowed | blocked | flagged | rate_limited | banned | error
+  action       String   @db.VarChar(16)
+  // Why the action happened, for example a rule id.
+  reason       String?
+  // Time spent inside the WAF, excluding the website's own response time.
+  wafMs        Float    @map("waf_ms")
+  upstreamMs   Float?   @map("upstream_ms")
+  anomalyScore Float?   @map("anomaly_score")
+  isAnomaly    Boolean  @default(false) @map("is_anomaly")
+  // Request numbers used by the ML model, kept so the model can be retrained.
+  features     Json?
+  // block | monitor at the moment of the request.
+  mode         String   @db.VarChar(16)
+  simulated    Boolean  @default(false)
+  upstream     String?
+
+  @@index([createdAt(sort: Desc)])
+  @@index([clientIp, createdAt(sort: Desc)])
+  @@index([action, createdAt(sort: Desc)])
+  @@index([isAnomaly, createdAt(sort: Desc)])
+  @@map("request_logs")
+}
+
+model Incident {
+  id           BigInt   @id @default(autoincrement())
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  clientIp     String   @map("client_ip") @db.VarChar(64)
+  method       String   @db.VarChar(16)
+  path         String
+  // sqli | xss | rate_limit | banned_ip | anomaly | evasion | inspection_error
+  attackType   String   @map("attack_type") @db.VarChar(32)
+  // low | medium | high | critical
+  severity     String   @db.VarChar(16)
+  ruleId       String?  @map("rule_id") @db.VarChar(64)
+  ruleName     String?  @map("rule_name")
+  // Where the match was found: query, body, path or a header name.
+  location     String?
+  // Short matched text, with secrets removed. Full bodies are never stored.
+  evidence     String?
+  // blocked | logged
+  actionTaken  String   @map("action_taken") @db.VarChar(16)
+  anomalyScore Float?   @map("anomaly_score")
+  mode         String   @db.VarChar(16)
+  // open | reviewed | false_positive
+  status       String   @default("open") @db.VarChar(16)
+  simulated    Boolean  @default(false)
+
+  @@index([createdAt(sort: Desc)])
+  @@index([attackType, createdAt(sort: Desc)])
+  @@index([clientIp, createdAt(sort: Desc)])
+  @@index([status, createdAt(sort: Desc)])
+  @@map("incidents")
+}
+
+model IpBan {
+  id        Int       @id @default(autoincrement())
+  ip        String    @db.VarChar(64)
+  reason    String
+  // auto | manual
+  source    String    @db.VarChar(16)
+  createdBy String?   @map("created_by") @db.VarChar(64)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  expiresAt DateTime? @map("expires_at") @db.Timestamptz(6)
+  liftedAt  DateTime? @map("lifted_at") @db.Timestamptz(6)
+  liftedBy  String?   @map("lifted_by") @db.VarChar(64)
+  simulated Boolean   @default(false)
+
+  @@index([ip])
+  @@index([liftedAt, expiresAt])
+  @@map("ip_bans")
+}
+
+model AuditLog {
+  id        BigInt   @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  username  String   @db.VarChar(64)
+  action    String   @db.VarChar(64)
+  target    String?
+  details   Json?
+  ip        String?  @db.VarChar(64)
+
+  @@index([createdAt(sort: Desc)])
+  @@map("audit_logs")
+}
+
+model Setting {
+  key       String   @id @db.VarChar(64)
+  value     Json
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updatedBy String?  @map("updated_by") @db.VarChar(64)
+
+  @@map("settings")
+}
+
+model MlModelRun {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  // generated | observed
+  source       String   @db.VarChar(16)
+  samples      Int
+  contamination Float
+  threshold    Float
+  // Share of held-out normal traffic the model flagged.
+  holdoutFlagRate Float @map("holdout_flag_rate")
+  featureNames Json     @map("feature_names")
+  trainedBy    String?  @map("trained_by") @db.VarChar(64)
+  active       Boolean  @default(false)
+
+  @@index([createdAt(sort: Desc)])
+  @@map("ml_model_runs")
+}
