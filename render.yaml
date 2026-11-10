@@ -1,0 +1,44 @@
+# Render Blueprint for the WAF and the test website. See docs/DEPLOYMENT.md.
+# "sync: false" values are typed into Render's dashboard, and are never stored in this file.
+services:
+  - type: web
+    name: hybrid-waf
+    runtime: docker
+    region: singapore # Same region as the Neon database.
+    plan: starter # Always on. The free plan sleeps when idle.
+    rootDir: waf-backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /__waf/ping
+    envVars:
+      - key: WAF_ENV
+        value: live
+      - key: DATABASE_URL
+        sync: false
+      - key: UPSTREAM_URL
+        sync: false
+      - key: WAF_SHARED_SECRET
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MODEL_SIGNING_KEY
+        generateValue: true
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: TRUST_PROXY_HOPS
+        value: "1"
+      - key: FAIL_MODE
+        value: closed
+
+  - type: web
+    name: hybrid-waf-test-site
+    runtime: docker
+    region: singapore
+    plan: free
+    rootDir: protected-site
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    envVars:
+      - key: WAF_SHARED_SECRET
+        sync: false

@@ -1,0 +1,28 @@
+# Secrets: never commit these
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Trained model files are rebuilt with the training command
+waf-backend/models/*.joblib
+waf-backend/models/*.sig
+
+# Node
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local logs and temp files
+*.log
+.DS_Store
+Thumbs.db
+tmp/

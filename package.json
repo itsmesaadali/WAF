@@ -1,0 +1,15 @@
+{
+  "name": "hybrid-waf",
+  "private": true,
+  "description": "Database migrations for the Hybrid WAF. Each app has its own package or requirements file.",
+  "scripts": {
+    "db:migrate:dev": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:status": "prisma migrate status",
+    "db:validate": "prisma validate"
+  },
+  "devDependencies": {
+    "dotenv": "^18.0.9",
+    "prisma": "7.10.1"
+  }
+}

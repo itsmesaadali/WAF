@@ -1,0 +1,6 @@
+# The root holds only database tooling. Each app is installed on its own, so it can deploy on its own.
+packages:
+  - "."
+allowBuilds:
+  "@prisma/engines": true
+  prisma: true
